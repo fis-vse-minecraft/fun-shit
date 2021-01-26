@@ -1,5 +1,6 @@
 package cz.vse.fis.minecraft.funshit.powereggs.eggs
 
+import cz.vse.fis.minecraft.funshit.utilities.BlockUtilities
 import org.bukkit.*
 import org.bukkit.block.Block
 import org.bukkit.event.player.PlayerEggThrowEvent
@@ -18,9 +19,9 @@ class ImplosionGrenadeEgg(private val plugin: JavaPlugin) : BaseEgg() {
     override fun execute(event: PlayerEggThrowEvent) {
         val origin = event.egg.location
         val world = event.egg.world
-        val blocks = blocksInRadius(origin.block, radius).filter {
-            it.location.distance(origin) < 2 + Random.nextInt(radius + 1)
-        }
+        val blocks = BlockUtilities
+            .blocksAround(origin, radius)
+            .filter { it.location.distance(origin) < 2 + Random.nextInt(radius + 1) }
 
         val floating = blocks.map {
             val block = world.spawnFallingBlock(
@@ -50,21 +51,5 @@ class ImplosionGrenadeEgg(private val plugin: JavaPlugin) : BaseEgg() {
         Bukkit
             .getScheduler()
             .scheduleSyncDelayedTask(plugin, { floating.forEach { it.remove() } }, 10)
-    }
-
-    private fun blocksInRadius(block: Block, radius: Int): List<Block> {
-        if (radius <= 0) return listOf(block)
-
-        val blocks = mutableListOf<Block>()
-
-        for (x in block.x - radius..block.x + radius) {
-            for (y in block.y - radius..block.y + radius) {
-                for (z in block.z - radius..block.z + radius) {
-                    blocks += block.world.getBlockAt(x, y, z)
-                }
-            }
-        }
-
-        return blocks
     }
 }
