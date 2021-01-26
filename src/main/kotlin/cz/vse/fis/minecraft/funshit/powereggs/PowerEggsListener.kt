@@ -2,6 +2,7 @@ package cz.vse.fis.minecraft.funshit.powereggs
 
 import cz.vse.fis.minecraft.funshit.powereggs.eggs.GrenadeEgg
 import cz.vse.fis.minecraft.funshit.powereggs.eggs.ImplosionGrenadeEgg
+import cz.vse.fis.minecraft.funshit.powereggs.eggs.ThunderEgg
 import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -13,6 +14,7 @@ class PowerEggsListener(plugin: JavaPlugin) : Listener {
     private val registeredEggs: List<PowerEgg> = listOf(
         GrenadeEgg(plugin),
         ImplosionGrenadeEgg(plugin),
+        ThunderEgg(plugin)
     )
 
     private val logger = plugin.logger
