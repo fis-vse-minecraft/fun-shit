@@ -3,6 +3,7 @@ package cz.vse.fis.minecraft.funshit.powereggs.eggs
 import org.bukkit.ChatColor
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
+import org.bukkit.Particle
 import org.bukkit.event.player.PlayerEggThrowEvent
 import org.bukkit.plugin.java.JavaPlugin
 
@@ -13,6 +14,10 @@ class GrenadeEgg(plugin: JavaPlugin) : BaseEgg() {
     override val ingredients: List<Material> = listOf(Material.EGG, Material.TNT)
 
     override fun execute(event: PlayerEggThrowEvent) {
-        TODO("Not yet implemented")
+        val egg = event.egg
+        val world = egg.world
+
+        world.createExplosion(egg.location, 5F)
+        world.spawnParticle(Particle.EXPLOSION_HUGE, egg.location, 100)
     }
 }
