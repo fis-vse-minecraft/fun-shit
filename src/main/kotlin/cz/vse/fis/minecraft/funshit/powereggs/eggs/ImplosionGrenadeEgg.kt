@@ -1,12 +1,12 @@
 package cz.vse.fis.minecraft.funshit.powereggs.eggs
 
 import cz.vse.fis.minecraft.funshit.powereggs.PowerEgg
-import org.bukkit.Bukkit
-import org.bukkit.Material
-import org.bukkit.Particle
-import org.bukkit.Sound
+import org.bukkit.*
 import org.bukkit.block.Block
 import org.bukkit.event.player.PlayerEggThrowEvent
+import org.bukkit.inventory.ItemStack
+import org.bukkit.inventory.Recipe
+import org.bukkit.inventory.ShapelessRecipe
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.util.Vector
 import kotlin.random.Random
@@ -14,7 +14,24 @@ import kotlin.random.Random
 class ImplosionGrenadeEgg(private val plugin: JavaPlugin) : PowerEgg {
     private val radius: Int = 5
 
-    override val id = "power:implosion_grenade"
+    override val id = NamespacedKey(plugin, "power_egg_implosion_grenade")
+
+    override fun recipe(): Recipe {
+        val item = ItemStack(Material.EGG)
+        val meta = item.itemMeta
+
+        meta.setDisplayName("${ChatColor.LIGHT_PURPLE}Implosion Grenade Egg${ChatColor.RESET}")
+        meta.lore = listOf(id.key)
+
+        item.itemMeta = meta
+
+        val recipe = ShapelessRecipe(id, item)
+
+        recipe.addIngredient(Material.EGG)
+        recipe.addIngredient(Material.ENDER_EYE)
+
+        return recipe
+    }
 
     override fun execute(event: PlayerEggThrowEvent) {
         val origin = event.egg.location

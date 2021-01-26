@@ -1,6 +1,7 @@
 package cz.vse.fis.minecraft.funshit.powereggs
 
 import cz.vse.fis.minecraft.funshit.powereggs.eggs.ImplosionGrenadeEgg
+import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerEggThrowEvent
@@ -14,6 +15,12 @@ class PowerEggsListener(private val plugin: JavaPlugin) : Listener {
 
     private val logger = plugin.logger
 
+    init {
+        // Register all egg recipes
+        logger.info("Registering recipes for ${registeredEggs.size} power eggs.")
+        registeredEggs.forEach { Bukkit.addRecipe(it.recipe()) }
+    }
+
     @EventHandler
     fun onPlayerEggThrowEvent(event: PlayerEggThrowEvent) {
         // Only handle events with items that have custom lore
@@ -24,7 +31,7 @@ class PowerEggsListener(private val plugin: JavaPlugin) : Listener {
         if (power.isEmpty()) return
 
         val id = power.first()
-        val egg = registeredEggs.find { it.id == id }
+        val egg = registeredEggs.find { it.id.key == id }
 
         if (egg == null) {
             logger.info("Unknown egg power with value [$id]!")
