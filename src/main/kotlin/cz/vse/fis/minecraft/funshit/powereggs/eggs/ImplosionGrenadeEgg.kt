@@ -1,27 +1,27 @@
-package cz.vse.fis.minecraft.funshit
+package cz.vse.fis.minecraft.funshit.powereggs.eggs
 
+import cz.vse.fis.minecraft.funshit.powereggs.PowerEgg
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.Particle
 import org.bukkit.Sound
 import org.bukkit.block.Block
-import org.bukkit.event.EventHandler
-import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerEggThrowEvent
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.util.Vector
 import kotlin.random.Random
 
-class EggImplosionGrenadesListener(private val plugin: JavaPlugin) : Listener {
+class ImplosionGrenadeEgg(private val plugin: JavaPlugin) : PowerEgg {
     private val radius: Int = 5
 
-    @EventHandler
-    fun onPlayerEggThrowEvent(event: PlayerEggThrowEvent) {
+    override val id = "power:implosion_grenade"
+
+    override fun execute(event: PlayerEggThrowEvent) {
         val origin = event.egg.location
         val world = event.egg.world
         val blocks = blocksInRadius(origin.block, radius).filter {
-                it.location.distance(origin) < 2 + Random.nextInt(radius + 1)
-            }
+            it.location.distance(origin) < 2 + Random.nextInt(radius + 1)
+        }
 
         val floating = blocks.map {
             val block = world.spawnFallingBlock(

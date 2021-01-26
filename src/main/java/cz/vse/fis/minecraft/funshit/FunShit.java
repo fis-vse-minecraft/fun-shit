@@ -1,5 +1,6 @@
 package cz.vse.fis.minecraft.funshit;
 
+import cz.vse.fis.minecraft.funshit.powereggs.PowerEggsListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class FunShit extends JavaPlugin {
@@ -20,6 +21,6 @@ public final class FunShit extends JavaPlugin {
     private void registerEventListeners() {
         getServer()
                 .getPluginManager()
-                .registerEvents(new EggImplosionGrenadesListener(this), this);
+                .registerEvents(new PowerEggsListener(this), this);
     }
 }
