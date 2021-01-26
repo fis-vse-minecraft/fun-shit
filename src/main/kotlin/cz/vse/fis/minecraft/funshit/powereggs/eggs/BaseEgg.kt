@@ -3,6 +3,7 @@ package cz.vse.fis.minecraft.funshit.powereggs.eggs
 import cz.vse.fis.minecraft.funshit.powereggs.PowerEgg
 import org.bukkit.ChatColor
 import org.bukkit.Material
+import org.bukkit.enchantments.Enchantment
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.Recipe
 import org.bukkit.inventory.ShapelessRecipe
@@ -17,6 +18,7 @@ abstract class BaseEgg : PowerEgg {
         val meta = item.itemMeta
 
         meta.setDisplayName("$color$name${ChatColor.RESET}")
+        meta.addEnchant(Enchantment.DURABILITY, 1, true)
         meta.lore = listOf(id.key)
 
         item.itemMeta = meta
