@@ -41,8 +41,12 @@ class EggImplosionGrenadesListener(private val plugin: JavaPlugin) : Listener {
 
         blocks.forEach { it.type = Material.AIR }
 
-        world.spawnParticle(Particle.REVERSE_PORTAL, origin, 400, 1.0, 1.0, 1.0)
-        world.playSound(origin, Sound.ENTITY_ENDERMAN_TELEPORT, 1F, 1F)
+        world.spawnParticle(Particle.REVERSE_PORTAL, origin, 200, 1.0, 1.0, 1.0)
+        world.spawnParticle(Particle.PORTAL, origin, 200, 1.0, 1.0, 1.0)
+        world.playSound(origin, Sound.ENTITY_ENDERMAN_TELEPORT, 2F, 1F)
+
+        // Prevent spawning of the chicken
+        event.isHatching = false
 
         Bukkit
             .getScheduler()
