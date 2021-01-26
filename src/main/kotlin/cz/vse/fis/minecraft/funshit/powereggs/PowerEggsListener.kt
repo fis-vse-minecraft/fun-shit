@@ -1,5 +1,6 @@
 package cz.vse.fis.minecraft.funshit.powereggs
 
+import cz.vse.fis.minecraft.funshit.powereggs.eggs.AntiGravityEgg
 import cz.vse.fis.minecraft.funshit.powereggs.eggs.GrenadeEgg
 import cz.vse.fis.minecraft.funshit.powereggs.eggs.ImplosionGrenadeEgg
 import cz.vse.fis.minecraft.funshit.powereggs.eggs.ThunderEgg
@@ -14,7 +15,8 @@ class PowerEggsListener(plugin: JavaPlugin) : Listener {
     private val registeredEggs: List<PowerEgg> = listOf(
         GrenadeEgg(plugin),
         ImplosionGrenadeEgg(plugin),
-        ThunderEgg(plugin)
+        ThunderEgg(plugin),
+        AntiGravityEgg(plugin)
     )
 
     private val logger = plugin.logger

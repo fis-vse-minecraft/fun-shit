@@ -12,7 +12,7 @@ class ImplosionGrenadeEgg(private val plugin: JavaPlugin) : BaseEgg() {
 
     override val id: NamespacedKey = NamespacedKey(plugin, "power_egg_implosion_grenade")
     override val color: ChatColor = ChatColor.LIGHT_PURPLE
-    override val name: String = "Implosion Grenade"
+    override val name: String = "Implosion grenade"
     override val ingredients: List<Material> = listOf(Material.EGG, Material.ENDER_EYE)
 
     override fun execute(event: PlayerEggThrowEvent) {
