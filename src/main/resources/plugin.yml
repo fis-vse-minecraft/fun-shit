@@ -1,4 +1,4 @@
-name: Fun Shit
+name: FunShit
 version: ${project.version}
 main: cz.vse.fis.minecraft.funshit.FunShit
 api-version: 1.16
