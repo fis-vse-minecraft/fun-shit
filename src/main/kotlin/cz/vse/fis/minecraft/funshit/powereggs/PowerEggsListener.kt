@@ -16,17 +16,18 @@ class PowerEggsListener(private val plugin: JavaPlugin) : Listener {
 
     @EventHandler
     fun onPlayerEggThrowEvent(event: PlayerEggThrowEvent) {
-        val power = event.egg.getMetadata("power")
+        // Only handle events with items that have custom lore
+        val power = event.egg.item.itemMeta.lore ?: return
 
         // If the power metadata is empty, the egg is not enchanted
         // and therefore no action is require
         if (power.isEmpty()) return
 
         val id = power.first()
-        val egg = registeredEggs.find { it.id == id.asString() }
+        val egg = registeredEggs.find { it.id == id }
 
         if (egg == null) {
-            logger.info("Unknown egg power with value [${id.asString()}]!")
+            logger.info("Unknown egg power with value [$id]!")
             return
         }
 
