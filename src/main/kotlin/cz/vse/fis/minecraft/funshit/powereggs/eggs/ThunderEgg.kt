@@ -12,7 +12,7 @@ class ThunderEgg(plugin: Plugin) : BaseEgg() {
     override val id: NamespacedKey = NamespacedKey(plugin, "power_egg_thunder")
     override val color: ChatColor = ChatColor.BLUE
     override val name: String = "Thunder egg"
-    override val ingredients: List<Material> = listOf(Material.EGG, Material.IRON_NUGGET)
+    override val ingredients: List<Material> = listOf(Material.EGG, Material.BLAZE_ROD)
 
     private val reach = 20
 
