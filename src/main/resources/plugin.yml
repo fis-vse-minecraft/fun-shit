@@ -1,0 +1,5 @@
+name: Fun Shit
+version: ${project.version}
+main: cz.vse.fis.minecraft.funshit.FunShit
+api-version: 1.16
+website: https://github.com/fis-vse-minecraft/fun-shit
