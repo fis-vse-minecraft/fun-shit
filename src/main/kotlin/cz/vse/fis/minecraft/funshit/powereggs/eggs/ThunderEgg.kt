@@ -10,7 +10,7 @@ import kotlin.math.abs
 
 class ThunderEgg(plugin: Plugin) : BaseEgg() {
     override val id: NamespacedKey = NamespacedKey(plugin, "power_egg_thunder")
-    override val color: ChatColor = ChatColor.BLUE
+    override val color: ChatColor = ChatColor.AQUA
     override val name: String = "Thunder egg"
     override val ingredients: List<Material> = listOf(Material.EGG, Material.BLAZE_ROD)
 
@@ -22,6 +22,7 @@ class ThunderEgg(plugin: Plugin) : BaseEgg() {
         val origin = egg.location
 
         world.spawnParticle(Particle.SMOKE_NORMAL, origin, 300)
+        world.strikeLightningEffect(origin)
         world.livingEntities
             .filter {
                 abs(it.location.distance(origin)) < reach &&
